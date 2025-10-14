@@ -2,11 +2,9 @@
     import { useAuthStore } from "../store/auth";
     import { LogOut, UserPlus, LogIn, Home } from "lucide-react";
     import { logout } from "../api/auth";
-    import { useEffect } from "react";
 
     export default function Navbar() {
     const user = useAuthStore((s) => s.user);
-    const setUser = useAuthStore((s) => s.setUser);
     const clearUser = useAuthStore((s) => s.clearUser);
     const navigate = useNavigate();
 
