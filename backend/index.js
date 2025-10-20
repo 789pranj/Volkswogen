@@ -1,9 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoute from './routes/auth.route.js';
+import videoRoute from './routes/video.route.js';
 import { connectDB } from "./lib/db.js";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
+
 
 dotenv.config();
 
@@ -20,6 +22,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoute);
+app.use("/api/video", videoRoute);
 
 
 // Start Server
