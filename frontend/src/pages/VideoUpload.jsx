@@ -80,46 +80,60 @@ export const VideoUpload = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 p-6">
-      <h2 className="text-3xl font-bold text-blue-400 mb-8 text-center">
+    <div className="relative min-h-screen overflow-hidden text-gray-100 p-8">
+      {/* Animated Gradient Background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#0ea5e9] bg-[length:200%_200%] animate-gradientMove"></div>
+
+      <h2 className="text-4xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400 drop-shadow-lg">
         Upload Your Video
       </h2>
 
+      {/* Message Notification */}
       {message.text && (
         <div
-          className={`w-full max-w-md mx-auto mb-6 p-3 rounded-lg text-white font-medium text-center
-            ${message.type === "success" ? "bg-green-500" : "bg-red-500"} shadow-md`}
+          className={`w-full max-w-md mx-auto mb-6 p-3 rounded-lg text-white font-medium text-center shadow-md 
+          ${message.type === "success" ? "bg-green-500/90" : "bg-red-500/90"}`}
         >
           {message.text}
         </div>
       )}
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
-        <label className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 cursor-pointer px-4 py-3 rounded-lg shadow-md transition">
-          <File className="w-5 h-5 text-blue-400" />
-          {videoFile ? videoFile.name : "Select a video"}
-          <input
-            type="file"
-            accept="video/*"
-            onChange={(e) => setVideoFile(e.target.files[0])}
-            className="hidden"
-          />
-        </label>
+      {/* Upload Box */}
+      <div className="max-w-3xl mx-auto mb-14 backdrop-blur-xl bg-white/10 border border-blue-300/40 rounded-2xl shadow-2xl p-10 flex flex-col items-center justify-center gap-6 hover:scale-[1.02] transition-all duration-300">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
+          <label className="flex items-center gap-3 bg-blue-600/20 hover:bg-blue-600/30 cursor-pointer px-6 py-4 rounded-xl shadow-md transition-all duration-300 w-full md:w-auto">
+            <File className="w-6 h-6 text-cyan-400" />
+            <span className="text-gray-100 font-medium">
+              {videoFile ? videoFile.name : "Select a video"}
+            </span>
+            <input
+              type="file"
+              accept="video/*"
+              onChange={(e) => setVideoFile(e.target.files[0])}
+              className="hidden"
+            />
+          </label>
 
-        <button
-          onClick={handleUpload}
-          disabled={uploading}
-          className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md font-semibold transition"
-        >
-          <UploadCloud className="w-5 h-5" />
-          {uploading ? "Uploading..." : "Upload"}
-        </button>
+          <button
+            onClick={handleUpload}
+            disabled={uploading}
+            className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-400 rounded-xl shadow-lg text-white font-semibold transition-all duration-300 disabled:opacity-60"
+          >
+            <UploadCloud className="w-5 h-5" />
+            {uploading ? "Uploading..." : "Upload"}
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {videos.map((video) => (
-          <VideoCard key={video._id} video={video} />
-        ))}
+      {/* Uploaded Videos */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {videos.length > 0 ? (
+          videos.map((video) => <VideoCard key={video._id} video={video} />)
+        ) : (
+          <p className="col-span-full text-center text-gray-300 text-lg">
+            No videos uploaded yet.
+          </p>
+        )}
       </div>
     </div>
   );
