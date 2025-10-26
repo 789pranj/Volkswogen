@@ -22,19 +22,25 @@ export const Login = () => {
     }
   };
 
-  const goToSignup = () => {
-    navigate("/"); // or "/signup"
-  };
+  const goToSignup = () => navigate("/"); // or "/signup"
 
   return (
     <div className="relative min-h-screen flex items-center justify-center text-gray-100">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#0ea5e9] bg-[length:200%_200%] animate-gradientMove"></div>
+
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 -z-10 bg-cover bg-center bg-fixed"
+        style={{
+          backgroundImage: "url('https://res.cloudinary.com/duxeqhtxe/image/upload/v1761466826/batmobile-car-with-neon-lights_gbbkwo.jpg')",
+        }}
+      ></div>
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 -z-10 bg-black/60"></div>
 
       {/* Glass Card */}
-      <div className="w-full max-w-md p-8 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl border border-blue-400/30">
-        <h2 className="text-3xl font-extrabold mb-6 text-center text-cyan-300 drop-shadow-lg">
-          Login to <span className="text-blue-400">Volkswagen</span>
+      <div className="w-full max-w-md p-10 bg-black/20 backdrop-blur-lg rounded-3xl border border-cyan-400/30 shadow-xl">
+        <h2 className="text-3xl font-extrabold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 drop-shadow-lg">
+          Login to <span className="text-blue-400">Com_Volk</span>
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -44,7 +50,7 @@ export const Login = () => {
             <input
               type="email"
               placeholder="Email"
-              className="w-full pl-10 pr-3 py-3 rounded-xl bg-white/10 border border-blue-400/40 text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition shadow-sm hover:shadow-md"
+              className="w-full pl-10 pr-3 py-3 rounded-xl bg-black/30 border border-cyan-400/50 text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition shadow-sm"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
@@ -57,7 +63,7 @@ export const Login = () => {
             <input
               type="password"
               placeholder="Password"
-              className="w-full pl-10 pr-3 py-3 rounded-xl bg-white/10 border border-blue-400/40 text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition shadow-sm hover:shadow-md"
+              className="w-full pl-10 pr-3 py-3 rounded-xl bg-black/30 border border-cyan-400/50 text-white placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition shadow-sm"
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
               required
@@ -72,7 +78,7 @@ export const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            className="w-full flex justify-center items-center gap-2 bg-black/40 border border-cyan-400/50 text-cyan-400 font-semibold py-3 rounded-xl shadow-md hover:shadow-cyan-500/50 transition-all duration-300"
           >
             <LogIn className="w-5 h-5" />
             Login
@@ -92,6 +98,6 @@ export const Login = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

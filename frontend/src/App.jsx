@@ -11,6 +11,7 @@ import { useAuthStore } from "./store/auth";
 import PageNotFound from "./pages/PageNotFound";
 import Footer from "./components/Footer";
 import VideoUpload from "./pages/VideoUpload";
+import AudioUpload from "./pages/AudioUpload";
 
 const App = () => {
   const setUser = useAuthStore((s) => s.setUser);
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/videoUpload" element={<ProtectedRoute><VideoUpload /></ProtectedRoute>} />
+            <Route path="/audioUpload" element={<ProtectedRoute><AudioUpload /></ProtectedRoute>} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
